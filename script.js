@@ -3,6 +3,8 @@
  * @param {string} imageSource - URL da imagem.
  * @returns {Element} Elemento de imagem do produto.
  */
+const itemSec = document.querySelector('.items');
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -32,7 +34,7 @@ const createCustomElement = (element, className, innerText) => {
  * @param {string} product.thumbnail - URL da imagem do produto.
  * @returns {Element} Elemento de produto.
  */
-const createProductItemElement = async ({ id, title, thumbnail }) => {
+const createProductItemElement = ({ id, title, thumbnail }) => {
   const section = document.createElement('section');
   section.className = 'item';
 
@@ -44,12 +46,11 @@ const createProductItemElement = async ({ id, title, thumbnail }) => {
   return section;
 };
 
-const data = async () => {
-  const result = await fetchProducts('computador');
-  return result.results;
+const generateItems = async () => {
+  const { results } = await fetchProducts('computador');
+  results.forEach((item) => itemSec.appendChild(createProductItemElement(item)));
 };
-
-createProductItemElement(data());
+generateItems();
 
 /**
  * Função que recupera o ID do produto passado como parâmetro.
