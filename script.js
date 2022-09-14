@@ -4,6 +4,10 @@
  */
 const itemSec = document.querySelector('.items');
 const cart = document.querySelector('.cart__items');
+const cartSec = document.querySelector('.cart');
+const totalElement = document.createElement('p');
+totalElement.className = 'total-price';
+cartSec.appendChild(totalElement);
 
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -86,20 +90,11 @@ const generateItems = async () => {
 };
 generateItems();
 
-/**
- * Função que recupera o ID do produto passado como parâmetro.
- * @param {Element} product - Elemento do produto.
- * @returns {string} ID do produto.
- */
-
-/**
- * Função responsável por criar e retornar um item do carrinho.
- * @param {Object} product - Objeto do produto.
- * @param {string} product.id - ID do produto.
- * @param {string} product.title - Título do produto.
- * @param {string} product.price - Preço do produto.
- * @returns {Element} Elemento de um item do carrinho.
- */
+const discartItemsBtn = document.querySelector('.empty-cart');
+discartItemsBtn.addEventListener('click', () => {
+  cart.innerHTML = '';
+  localStorage.clear();
+});
 
 window.onload = () => {
   if (!localStorage.getItem('cartItems')) return;
