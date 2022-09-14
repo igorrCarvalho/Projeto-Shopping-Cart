@@ -8,6 +8,7 @@ const cartSec = document.querySelector('.cart');
 const totalElement = document.createElement('p');
 totalElement.className = 'total-price';
 cartSec.appendChild(totalElement);
+let result = 0;
 
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -38,6 +39,10 @@ const createCartItemElement = ({ id, title, price }) => {
   li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
   li.addEventListener('click', () => {
     cart.removeChild(li);
+    result -= price;
+    result = Number(result.toFixed(2));
+    totalElement.innerText = `Subtotal: $${result}`;
+    localStorage.setItem('price', result);
     const liDatas = [];
     const cartArr = document.querySelectorAll('cart__item');
     cartArr.forEach((element) => {
@@ -52,6 +57,11 @@ const btnEvent = async (sec) => {
   cart.appendChild(createCartItemElement(await fetchItem(getIdFromProductItem(sec))));
   const cartItem = document.querySelectorAll('.cart__item');
   if (cartItem.length > 0) {
+    const item = await fetchItem(getIdFromProductItem(sec));
+    result += item.price;
+    result = Number(result.toFixed(2));
+    totalElement.innerText = `Subtotal: $${result}`;
+    localStorage.setItem('price', result);
     const liData = [];
     cartItem.forEach((element) => {
       liData.push(element.innerHTML);
@@ -93,16 +103,15 @@ generateItems();
 const discartItemsBtn = document.querySelector('.empty-cart');
 discartItemsBtn.addEventListener('click', () => {
   cart.innerHTML = '';
+  result = 0;
   localStorage.clear();
+  totalElement.innerText = 'Subtotal: $0';
 });
 
-window.onload = () => {
-  if (!localStorage.getItem('cartItems')) return;
+const recItems = () => {
   const cartArray = JSON.parse(getSavedCartItems());
   cartArray.forEach((text) => {
-    const recLi = document.createElement('li');
-    recLi.className = 'cart__item';
-    recLi.innerText = text;
+    const recLi = createCustomElement('li', 'cart__item', text);
     recLi.addEventListener('click', () => {
       cart.removeChild(recLi);
       const cartItemArr = document.querySelectorAll('.cart__item');
@@ -115,4 +124,14 @@ window.onload = () => {
     });
     cart.appendChild(recLi);
   });
+};
+
+window.onload = () => {
+  if (!localStorage.getItem('cartItems')) {
+    totalElement.innerText = 'Subtotal: $0';
+    return;
+  }
+  recItems();
+  const value = localStorage.getItem('price');
+  totalElement.innerText = `Subtotal: $${value}`;  
 };
