@@ -1,5 +1,4 @@
-/**
- * Função responsável por criar e retornar o elemento de imagem do produto.
+/** * Função responsável por criar e retornar o elemento de imagem do produto.
  * @param {string} imageSource - URL da imagem.
  * @returns {Element} Elemento de imagem do produto.
  */
@@ -35,9 +34,28 @@ const createCartItemElement = ({ id, title, price }) => {
   li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
   li.addEventListener('click', () => {
     cart.removeChild(li);
+    const liDatas = [];
+    const cartArr = document.querySelectorAll('cart__item');
+    cartArr.forEach((element) => {
+      liDatas.push(element.innerHTML);
+      return localStorage.setItem('cartItems', JSON.stringify(liDatas));
+    });
   });
   return li;
 };
+
+const btnEvent = async (sec) => {
+  cart.appendChild(createCartItemElement(await fetchItem(getIdFromProductItem(sec))));
+  const cartItem = document.querySelectorAll('.cart__item');
+  if (cartItem.length > 0) {
+    const liData = [];
+    cartItem.forEach((element) => {
+      liData.push(element.innerHTML);
+      saveCartItems(liData);
+    });
+  }
+};
+
 /**
  * Função responsável por criar e retornar o elemento do produto.
  * @param {Object} product - Objeto do produto. 
@@ -55,11 +73,10 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
   section.appendChild(createCustomElement('span', 'item__title', title));
   section.appendChild(createProductImageElement(thumbnail));
   const cartBtn = createCustomElement('button', 'item__add', 'Adicionar ao carrinho!');
-  cartBtn.addEventListener('click', async () => {
-    cart.appendChild(createCartItemElement(await fetchItem(getIdFromProductItem(section))));
+  cartBtn.addEventListener('click', () => {
+    btnEvent(section);
   });
   section.appendChild(cartBtn);
-  
   return section;
 };
 
@@ -84,4 +101,23 @@ generateItems();
  * @returns {Element} Elemento de um item do carrinho.
  */
 
-window.onload = () => { };
+window.onload = () => {
+  if (!localStorage.getItem('cartItems')) return;
+  const cartArray = JSON.parse(getSavedCartItems());
+  cartArray.forEach((text) => {
+    const recLi = document.createElement('li');
+    recLi.className = 'cart__item';
+    recLi.innerText = text;
+    recLi.addEventListener('click', () => {
+      cart.removeChild(recLi);
+      const cartItemArr = document.querySelectorAll('.cart__item');
+      if (cartItemArr.length === 0) localStorage.clear();
+      const liDatas = [];
+      cartItemArr.forEach((element) => {
+        liDatas.push(element.innerHTML);
+        return localStorage.setItem('cartItems', JSON.stringify(liDatas));
+      });
+    });
+    cart.appendChild(recLi);
+  });
+};

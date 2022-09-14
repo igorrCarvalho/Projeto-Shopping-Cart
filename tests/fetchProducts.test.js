@@ -5,6 +5,7 @@ const computadorSearch = require('../mocks/search');
 
 describe('1 - Teste a função fetchProducts', () => {
   const url = 'https://api.mercadolibre.com/sites/MLB/search?q=computador'
+  expect.assertions(5)
   it('fetchProducts é uma função', () => {
     expect(typeof fetchProducts).toBe('function')
   });
