@@ -31,6 +31,19 @@ const createCustomElement = (element, className, innerText) => {
   return e;
 };
 
+const loading = () => {
+  const loadingDiv = document.createElement('div');
+  loadingDiv.className = 'loading-div';
+  const loadingText = createCustomElement('p', 'loading', 'carregando...');
+  loadingDiv.appendChild(loadingText);
+  itemSec.appendChild(loadingDiv);
+};
+
+const removeLoading = () => {
+  const loadingText = document.querySelector('.loading-div');
+  loadingText.remove();
+};
+
 const getIdFromProductItem = (product) => product.querySelector('span.item_id').innerText;
 
 const createCartItemElement = ({ id, title, price }) => {
@@ -98,7 +111,6 @@ const generateItems = async () => {
   const { results } = await fetchProducts('computador');
   results.forEach((item) => itemSec.appendChild(createProductItemElement(item)));
 };
-generateItems();
 
 const discartItemsBtn = document.querySelector('.empty-cart');
 discartItemsBtn.addEventListener('click', () => {
@@ -126,7 +138,10 @@ const recItems = () => {
   });
 };
 
-window.onload = () => {
+window.onload = async () => {
+  loading();
+  await generateItems();
+  removeLoading();
   if (!localStorage.getItem('cartItems')) {
     totalElement.innerText = 'Subtotal: $0';
     return;
