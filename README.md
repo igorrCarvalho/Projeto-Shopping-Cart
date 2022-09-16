@@ -40,29 +40,21 @@ Este projeto foi desenvolvido por [Igor Carvalho](https://www.linkedin.com/in/ig
   <details>
     <summary><strong>Teste da função fetchItem</strong></summary><br />
     O código referente ao teste se encontra em fetchItem.test.js, e para rodá-lo basta digitar no terminal
-    ```bash
-    npm test fetchItem
-    ```
+    - npm test fetchItem
   </details>
   <details>
     <summary><strong>Teste da função fetchProducts</strong></summary><br />
     O código referente ao teste se encontra em fetchProducts.test.js. e para rodá-lo basta digitar no terminal
-    ```bash
-    npm test fetchProducts
-    ```
+    - npm test fetchProducts
   </details>
   <details>
     <summary><strong>Teste da função getSavedCartItems</strong></summary><br />
     O código referente ao teste se encontra em getSavedCartItems.test.js e para rodá-lo basta digitar no terminal
-    ```bash
-    npm test getSavedCartItems
-    ```
+    - npm test getSavedCartItems
   </details>
   <details>
     <summary><strong>Teste da função saveCartItems</strong></summary><br />
     O código referente ao teste se encontra em saveCartItems.test.js e para rodá-lo basta digitar no terminal
-    ```bash
-    npm test saveCartItems
-    ```
+    - npm test saveCartItems
   </details>
 </details>
