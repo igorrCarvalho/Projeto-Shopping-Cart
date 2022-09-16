@@ -4,7 +4,6 @@ const item = require('../mocks/item');
 
 describe('2 - Teste a função fetchItem', () => {
   const param = 'MLB1615760527';
-  expect.assertions(5);
   it('fetchItem é uma função', () => {
     expect(typeof fetchItem).toBe('function');
   });

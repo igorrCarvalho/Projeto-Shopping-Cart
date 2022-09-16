@@ -46,15 +46,17 @@ const removeLoading = () => {
 
 const getIdFromProductItem = (product) => product.querySelector('span.item_id').innerText;
 
-const createCartItemElement = ({ id, title, price }) => {
+const createCartItemElement = ({ title, price }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
-  li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
+  li.innerText = `${title}  
+  
+  R$ ${price}`;
   li.addEventListener('click', () => {
     cart.removeChild(li);
     result -= price;
     result = Number(result.toFixed(2));
-    totalElement.innerText = `Subtotal: $${result}`;
+    totalElement.innerText = `Subtotal: R$ ${result}`;
     localStorage.setItem('price', result);
     const liDatas = [];
     const cartArr = document.querySelectorAll('cart__item');
@@ -73,7 +75,7 @@ const btnEvent = async (sec) => {
     const item = await fetchItem(getIdFromProductItem(sec));
     result += item.price;
     result = Number(result.toFixed(2));
-    totalElement.innerText = `Subtotal: $${result}`;
+    totalElement.innerText = `Subtotal: R$ ${result}`;
     localStorage.setItem('price', result);
     const liData = [];
     cartItem.forEach((element) => {
@@ -91,14 +93,15 @@ const btnEvent = async (sec) => {
  * @param {string} product.thumbnail - URL da imagem do produto.
  * @returns {Element} Elemento de produto.
  */
-const createProductItemElement = ({ id, title, thumbnail }) => {
+const createProductItemElement = ({ id, title, thumbnail, price }) => {
   const section = document.createElement('section');
   section.className = 'item';
   
   const itemId = createCustomElement('span', 'item_id', id);
-  section.appendChild(itemId);
-  section.appendChild(createCustomElement('span', 'item__title', title));
   section.appendChild(createProductImageElement(thumbnail));
+  section.appendChild(createCustomElement('span', 'item__title', title));
+  section.appendChild(createCustomElement('span', 'item-price', `R$ ${price}`));
+  section.appendChild(itemId);
   const cartBtn = createCustomElement('button', 'item__add', 'Adicionar ao carrinho!');
   cartBtn.addEventListener('click', () => {
     btnEvent(section);
@@ -117,7 +120,7 @@ discartItemsBtn.addEventListener('click', () => {
   cart.innerHTML = '';
   result = 0;
   localStorage.clear();
-  totalElement.innerText = 'Subtotal: $0';
+  totalElement.innerText = 'Subtotal: R$ 0';
 });
 
 const recItems = () => {
@@ -143,7 +146,7 @@ window.onload = async () => {
   await generateItems();
   removeLoading();
   if (!localStorage.getItem('cartItems')) {
-    totalElement.innerText = 'Subtotal: $0';
+    totalElement.innerText = 'Subtotal: R$ 0';
     return;
   }
   recItems();
