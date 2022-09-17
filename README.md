@@ -28,9 +28,9 @@ Este projeto foi desenvolvido por [Igor Carvalho](https://www.linkedin.com/in/ig
   <summary><strong>Como copiar o projeto pra sua máquina</strong></summary><br />
 
   Em primeiro lugar clone o repositório
-  - `git clone * chave SSH *`
+  - `git clone * chave SSH *` <br />
   Depois disso entre na pasta clonada
-  - `cd * nome da pasta *`
+  - `cd * nome da pasta *` <br />
   E por último instale as dependências do projeto pelo terminal
   - `npm install`
 </details>
