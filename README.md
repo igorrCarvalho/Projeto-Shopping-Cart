@@ -1,6 +1,6 @@
 # Welcome to the project Shopping Cart repositorie! 👋
 
-This project was made using the TDD (Test Driven Development) method and uses the Mercado Livre API key to generate the items of the store. Also, it have an dinamic cart, wich calculates the total price and save the items if the page was closed and opened again. Besides, its possible to discart every item if you want. <br />
+This project was made using the TDD (Test Driven Development) method and uses the Mercado Livre API key to generate the items of the store. Also, it have an dinamic cart, wich calculates the total price and save the items if the page was closed and opened again. Besides, its possible to discart every item if you want. <br /><br />
 ![ezgif com-gif-maker (5)](https://user-images.githubusercontent.com/64559670/190874714-621dee88-43bd-4b1d-8d9c-b17c1a95c112.gif)
 
 # Development
