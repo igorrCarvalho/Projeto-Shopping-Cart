@@ -2,6 +2,9 @@
 
 Aqui você encontrará o código referente ao projeto Shopping Cart. Foi desenvolvido por meio do TDD (Test Driven Development) e tem como objetivo a construção de um carrinho de compras dinâmico, com base na API key do Mercado Livre. O projeto conta com um carrinho dinâmico, que calcula o valor dos itens no carrinho e os salva caso a aba seja fechada. Além disso é possivel retirar qualquer item escolhido do carrinho ou retirar todos.
 
+![ezgif com-gif-maker (5)](https://user-images.githubusercontent.com/64559670/190874714-621dee88-43bd-4b1d-8d9c-b17c1a95c112.gif)
+
+
 # Desenvolvimento
 
 Este projeto foi desenvolvido por [Igor Carvalho](https://www.linkedin.com/in/igor-carvalho-554481244/) enquanto estudava na Trybe.
