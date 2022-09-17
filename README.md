@@ -38,7 +38,7 @@ This project was developed by [Igor Carvalho](https://www.linkedin.com/in/igor-c
 <details>
   <summary><strong>Tests made by me</strong></summary><br />
 
-  How i said, this code was made by TDD method, so you can also test the functions that i made, to see if it's working properly. All tests are in the 'tests' directorie and was made using Jest framework. 
+  How i said, this code was made by TDD method, so you can also test the functions that i made, to see if it's working properly. All tests are in the 'tests' directorie and was made using Jest framework.<br />
   `Warning: only the tests showed in this section were made by me. The other tests belongs to Trybe`
   <details>
     <summary><strong>fetchItem test</strong></summary><br />
